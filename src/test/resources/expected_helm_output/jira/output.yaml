@@ -122,6 +122,7 @@ data:
       https: true
       maxBodySize: 250m
       nginx: true
+      openShiftRoute: false
       path: null
       proxyConnectTimeout: 60
       proxyReadTimeout: 60
@@ -246,6 +247,8 @@ data:
         prometheusLabelSelector: {}
         scrapeIntervalSeconds: 30
     nodeSelector: {}
+    openshift:
+      runWithRestrictedSCC: false
     ordinals:
       enabled: false
       start: 0
@@ -391,6 +394,7 @@ spec:
   template:
     metadata:
       annotations:
+        checksum/config-jvm: a022c7633de9c509e53082e05e2fceddb84cdf43328196f6ee6843d1efda9fa1
       labels:
         app.kubernetes.io/name: jira
         app.kubernetes.io/instance: unittest-jira

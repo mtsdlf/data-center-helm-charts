@@ -153,6 +153,24 @@ data:
         failureThreshold: 120
         initialDelaySeconds: 60
         periodSeconds: 5
+      tomcatConfig:
+        acceptCount: "10"
+        accessLogsMaxDays: null
+        connectionTimeout: "20000"
+        enableLookups: "false"
+        generateByHelm: false
+        maxHttpHeaderSize: "8192"
+        maxThreads: "100"
+        mgmtPort: "8005"
+        minSpareThreads: "10"
+        port: "8095"
+        protocol: HTTP/1.1
+        proxyInternalIps: null
+        proxyName: null
+        proxyPort: null
+        redirectPort: "8443"
+        scheme: null
+        secure: null
       topologySpreadConstraints: []
       umask: "0022"
       useHelmReleaseNameAsContainerName: false
@@ -182,6 +200,7 @@ data:
       https: true
       maxBodySize: 250m
       nginx: true
+      openShiftRoute: false
       path: /
       proxyConnectTimeout: 60
       proxyReadTimeout: 60
@@ -210,6 +229,8 @@ data:
         prometheusLabelSelector: {}
         scrapeIntervalSeconds: 30
     nodeSelector: {}
+    openshift:
+      runWithRestrictedSCC: false
     ordinals:
       enabled: false
       start: 0
@@ -352,6 +373,7 @@ spec:
   template:
     metadata:
       annotations:
+        checksum/config-jvm: 383d0385319b80eef29acd67ca2c538f526b1ebcb262ca25a55dc12f9ce050bf
       labels:
         app.kubernetes.io/name: crowd
         app.kubernetes.io/instance: unittest-crowd

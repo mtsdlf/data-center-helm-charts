@@ -284,6 +284,7 @@ data:
       https: true
       maxBodySize: 250m
       nginx: true
+      openShiftRoute: false
       path: null
       proxyConnectTimeout: 60
       proxyReadTimeout: 60
@@ -312,6 +313,8 @@ data:
         prometheusLabelSelector: {}
         scrapeIntervalSeconds: 30
     nodeSelector: {}
+    openshift:
+      runWithRestrictedSCC: false
     ordinals:
       enabled: false
       start: 0
@@ -564,6 +567,7 @@ spec:
   template:
     metadata:
       annotations:
+        checksum/config-jvm: 04c6f2e14c3173eebf4f36995e26af5b8284651df7639d23f38d328e9f5d7f79
       labels:
         app.kubernetes.io/name: bitbucket-mesh
         app.kubernetes.io/instance: unittest-bitbucket
@@ -584,7 +588,7 @@ spec:
             - mountPath: "/var/atlassian/application-data/mesh"
               name: mesh-home
           securityContext:
-            runAsUser: 0 # make sure we run as root to avoid permission denied
+            runAsUser: 0
       containers:
         - name: bitbucket-mesh
           image: atlassian/bitbucket-mesh:2.0.1
@@ -686,6 +690,7 @@ spec:
   template:
     metadata:
       annotations:
+        checksum/config-jvm: 8987619eb9baf51a3d289a3d058631f004e8ec059a6dc7a629a5b5bae197dc07
       labels:
         app.kubernetes.io/name: bitbucket
         app.kubernetes.io/instance: unittest-bitbucket

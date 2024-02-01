@@ -193,6 +193,7 @@ data:
         redirectPort: "8443"
         scheme: null
         secure: null
+        trustedProxies: null
         uriEncoding: UTF-8
       topologySpreadConstraints: []
       umask: "0022"
@@ -230,6 +231,7 @@ data:
       https: true
       maxBodySize: 250m
       nginx: true
+      openShiftRoute: false
       path: null
       proxyConnectTimeout: 60
       proxyReadTimeout: 60
@@ -258,6 +260,8 @@ data:
         prometheusLabelSelector: {}
         scrapeIntervalSeconds: 30
     nodeSelector: {}
+    openshift:
+      runWithRestrictedSCC: false
     ordinals:
       enabled: false
       start: 0
@@ -521,6 +525,7 @@ spec:
   template:
     metadata:
       annotations:
+        checksum/config-jvm: 5c7e4f3183d49bd4e8c82a29b06246e551e4120042495652f1f9b27a0599a882
       labels:
         app.kubernetes.io/name: confluence-synchrony
         app.kubernetes.io/instance: unittest-confluence
@@ -602,6 +607,7 @@ spec:
   template:
     metadata:
       annotations:
+        checksum/config-jvm: 90391ed54db4435acad3087eabe42d3780c1f0a024686a44881b20f7798bd926
       labels:
         app.kubernetes.io/name: confluence
         app.kubernetes.io/instance: unittest-confluence
