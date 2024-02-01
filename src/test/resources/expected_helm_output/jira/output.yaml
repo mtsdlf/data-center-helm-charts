@@ -127,6 +127,7 @@ data:
       proxyConnectTimeout: 60
       proxyReadTimeout: 60
       proxySendTimeout: 60
+      routeHttpHeaders: {}
       tlsSecretName: null
     jira:
       accessLog:
