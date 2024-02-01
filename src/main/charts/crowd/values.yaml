@@ -464,6 +464,10 @@ ingress:
   #
   openShiftRoute: false
 
+  # -- RouteHTTPHeaders defines policy for HTTP headers. Applicable to OpenShift Routes only
+  #
+  routeHttpHeaders: {}
+
   # -- The class name used by the ingress controller if it's being used.
   #
   # Please follow documentation of your ingress controller. If the cluster

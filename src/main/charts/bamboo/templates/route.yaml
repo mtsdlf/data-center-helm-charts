@@ -10,6 +10,12 @@ metadata:
   {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
+{{- if .Values.ingress.routeHttpHeaders }}
+  httpHeaders:
+{{- with .Values.ingress.routeHttpHeaders }}
+{{- toYaml . | nindent 4 }}
+{{- end }}
+{{- end }}
   host: {{ .Values.ingress.host }}
   to:
     kind: Service
