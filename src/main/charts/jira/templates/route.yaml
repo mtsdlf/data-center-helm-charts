@@ -17,6 +17,7 @@ spec:
 {{- end }}
 {{- end }}
   host: {{ .Values.ingress.host }}
+  path: {{ include "jira.ingressPath" . }}
   to:
     kind: Service
     name: {{ include "common.names.fullname" . }}
