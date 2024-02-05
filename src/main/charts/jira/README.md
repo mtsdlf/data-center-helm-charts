@@ -4,8 +4,6 @@
 
 A chart for installing Jira Data Center on Kubernetes
 
-For installation please follow [the documentation](https://atlassian.github.io/data-center-helm-charts/).
-
 **Homepage:** <https://atlassian.github.io/data-center-helm-charts/>
 
 ## Source Code
@@ -25,9 +23,9 @@ Kubernetes: `>=1.21.x-0`
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| additionalConfigMaps | list | `[]` | Create additional ConfigMaps with given names, keys and content. Ther Helm release name will be used as a prefix for a ConfigMap name, fileName is used as subPath |
-| additionalContainers | list | `[]` | Additional container definitions that will be added to all Jira pods |
-| additionalFiles | list | `[]` | Additional existing ConfigMaps and Secrets not managed by Helm that should be mounted into service container. Configuration details below (camelCase is important!): 'name'      - References existing ConfigMap or secret name. 'type'      - 'configMap' or 'secret' 'key'       - The file name. 'mountPath' - The destination directory in a container. VolumeMount and Volumes are added with this name and index position, for example; custom-config-0, keystore-2 |
+| additionalConfigMaps | list | `[]` | Create additional ConfigMaps with given names, keys and content. Ther Helm release name will be used as a prefix for a ConfigMap name, fileName is used as subPath  |
+| additionalContainers | list | `[]` | Additional container definitions that will be added to all Jira pods  |
+| additionalFiles | list | `[]` | Additional existing ConfigMaps and Secrets not managed by Helm that should be mounted into service container. Configuration details below (camelCase is important!): 'name'      - References existing ConfigMap or secret name. 'type'      - 'configMap' or 'secret' 'key'       - The file name. 'mountPath' - The destination directory in a container. VolumeMount and Volumes are added with this name and index position, for example; custom-config-0, keystore-2  |
 | additionalHosts | list | `[]` | Additional host aliases for each pod, equivalent to adding them to the /etc/hosts file. https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/ |
 | additionalInitContainers | list | `[]` | Additional initContainer definitions that will be added to all Jira pods  |
 | additionalLabels | object | `{}` | Additional labels that should be applied to all resources  |
@@ -75,34 +73,34 @@ Kubernetes: `>=1.21.x-0`
 | jira.additionalCertificates | object | `{"customCmd":null,"secretName":null}` | Certificates to be added to Java truststore. Provide reference to a secret that contains the certificates  |
 | jira.additionalEnvironmentVariables | list | `[]` | Defines any additional environment variables to be passed to the Jira container. See https://hub.docker.com/r/atlassian/jira-software for supported variables.  |
 | jira.additionalJvmArgs | list | `[]` |  |
-| jira.additionalLibraries | list | `[]` | Specifies a list of additional Java libraries that should be added to the Jira container. Each item in the list should specify the name of the volume that contains the library, as well as the name of the library file within that volume's root directory. Optionally, a subDirectory field can be included to specify which directory in the volume contains the library file. Additional details: https://atlassian.github.io/data-center-helm-charts/examples/external_libraries/EXTERNAL_LIBS/ |
-| jira.additionalPorts | list | `[]` | Defines any additional ports for the Jira container. |
-| jira.additionalVolumeClaimTemplates | list | `[]` | Defines additional volumeClaimTemplates that should be applied to the Jira pod. Note that this will not create any corresponding volume mounts; those needs to be defined in jira.additionalVolumeMounts |
-| jira.additionalVolumeMounts | list | `[]` | Defines any additional volumes mounts for the Jira container. These can refer to existing volumes, or new volumes can be defined via 'volumes.additional'. |
-| jira.clustering.enabled | bool | `false` | Set to 'true' if Data Center clustering should be enabled This will automatically configure cluster peer discovery between cluster nodes. |
-| jira.containerSecurityContext | object | `{}` | Standard K8s field that holds security configurations that will be applied to a container. https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ |
-| jira.forceConfigUpdate | bool | `false` | The Docker entrypoint.py generates application configuration on first start; not all of these files are regenerated on subsequent starts. By default, dbconfig.xml is generated only once. Set `forceConfigUpdate` to true to change this behavior. |
-| jira.livenessProbe.customProbe | object | `{}` | Custom livenessProbe to override the default tcpSocket probe |
-| jira.livenessProbe.enabled | bool | `false` | Whether to apply the livenessProbe check to pod. |
-| jira.livenessProbe.failureThreshold | int | `12` | The number of consecutive failures of the Jira container liveness probe before the pod fails liveness checks. |
-| jira.livenessProbe.initialDelaySeconds | int | `60` | Time to wait before starting the first probe |
-| jira.livenessProbe.periodSeconds | int | `5` | How often (in seconds) the Jira container liveness probe will run |
-| jira.livenessProbe.timeoutSeconds | int | `1` | Number of seconds after which the probe times out |
-| jira.ports.ehcache | int | `40001` | Ehcache port |
-| jira.ports.ehcacheobject | int | `40011` | Ehcache object port |
-| jira.ports.http | int | `8080` | The port on which the Jira container listens for HTTP traffic |
-| jira.postStart | object | `{"command":null}` | PostStart is executed immediately after a container is created. However, there is no guarantee that the hook will execute before the container ENTRYPOINT. See: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks |
-| jira.readinessProbe.customProbe | object | `{}` | Custom readinessProbe to override the default /status httpGet |
-| jira.readinessProbe.enabled | bool | `true` | Whether to apply the readinessProbe check to pod. |
-| jira.readinessProbe.failureThreshold | int | `10` | The number of consecutive failures of the Jira container readiness probe before the pod fails readiness checks. |
-| jira.readinessProbe.initialDelaySeconds | int | `10` | The initial delay (in seconds) for the Jira container readiness probe, after which the probe will start running. |
-| jira.readinessProbe.periodSeconds | int | `5` | How often (in seconds) the Jira container readiness probe will run |
-| jira.readinessProbe.timeoutSeconds | int | `1` | Number of seconds after which the probe times out |
-| jira.resources.container.requests.cpu | string | `"2"` | Initial CPU request by Jira pod |
-| jira.resources.container.requests.memory | string | `"2G"` | Initial Memory request by Jira pod |
-| jira.resources.jvm.maxHeap | string | `"768m"` | The maximum amount of heap memory that will be used by the Jira JVM |
-| jira.resources.jvm.minHeap | string | `"384m"` | The minimum amount of heap memory that will be used by the Jira JVM |
-| jira.resources.jvm.reservedCodeCache | string | `"512m"` | The memory reserved for the Jira JVM code cache |
+| jira.additionalLibraries | list | `[]` | Specifies a list of additional Java libraries that should be added to the Jira container. Each item in the list should specify the name of the volume that contains the library, as well as the name of the library file within that volume's root directory. Optionally, a subDirectory field can be included to specify which directory in the volume contains the library file. Additional details: https://atlassian.github.io/data-center-helm-charts/examples/external_libraries/EXTERNAL_LIBS/  |
+| jira.additionalPorts | list | `[]` | Defines any additional ports for the Jira container.  |
+| jira.additionalVolumeClaimTemplates | list | `[]` | Defines additional volumeClaimTemplates that should be applied to the Jira pod. Note that this will not create any corresponding volume mounts; those needs to be defined in jira.additionalVolumeMounts  |
+| jira.additionalVolumeMounts | list | `[]` | Defines any additional volumes mounts for the Jira container. These can refer to existing volumes, or new volumes can be defined via 'volumes.additional'.  |
+| jira.clustering.enabled | bool | `false` | Set to 'true' if Data Center clustering should be enabled This will automatically configure cluster peer discovery between cluster nodes.  |
+| jira.containerSecurityContext | object | `{}` | Standard K8s field that holds security configurations that will be applied to a container. https://kubernetes.io/docs/tasks/configure-pod-container/security-context/  |
+| jira.forceConfigUpdate | bool | `false` | The Docker entrypoint.py generates application configuration on first start; not all of these files are regenerated on subsequent starts. By default, dbconfig.xml is generated only once. Set `forceConfigUpdate` to true to change this behavior.  |
+| jira.livenessProbe.customProbe | object | `{}` | Custom livenessProbe to override the default tcpSocket probe  |
+| jira.livenessProbe.enabled | bool | `false` | Whether to apply the livenessProbe check to pod.  |
+| jira.livenessProbe.failureThreshold | int | `12` | The number of consecutive failures of the Jira container liveness probe before the pod fails liveness checks.  |
+| jira.livenessProbe.initialDelaySeconds | int | `60` | Time to wait before starting the first probe  |
+| jira.livenessProbe.periodSeconds | int | `5` | How often (in seconds) the Jira container liveness probe will run  |
+| jira.livenessProbe.timeoutSeconds | int | `1` | Number of seconds after which the probe times out  |
+| jira.ports.ehcache | int | `40001` | Ehcache port  |
+| jira.ports.ehcacheobject | int | `40011` | Ehcache object port  |
+| jira.ports.http | int | `8080` | The port on which the Jira container listens for HTTP traffic  |
+| jira.postStart | object | `{"command":null}` | PostStart is executed immediately after a container is created. However, there is no guarantee that the hook will execute before the container ENTRYPOINT. See: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks  |
+| jira.readinessProbe.customProbe | object | `{}` | Custom readinessProbe to override the default /status httpGet  |
+| jira.readinessProbe.enabled | bool | `true` | Whether to apply the readinessProbe check to pod.  |
+| jira.readinessProbe.failureThreshold | int | `10` | The number of consecutive failures of the Jira container readiness probe before the pod fails readiness checks.  |
+| jira.readinessProbe.initialDelaySeconds | int | `10` | The initial delay (in seconds) for the Jira container readiness probe, after which the probe will start running.  |
+| jira.readinessProbe.periodSeconds | int | `5` | How often (in seconds) the Jira container readiness probe will run  |
+| jira.readinessProbe.timeoutSeconds | int | `1` | Number of seconds after which the probe times out  |
+| jira.resources.container.requests.cpu | string | `"2"` | Initial CPU request by Jira pod  |
+| jira.resources.container.requests.memory | string | `"2G"` | Initial Memory request by Jira pod  |
+| jira.resources.jvm.maxHeap | string | `"768m"` | The maximum amount of heap memory that will be used by the Jira JVM  |
+| jira.resources.jvm.minHeap | string | `"384m"` | The minimum amount of heap memory that will be used by the Jira JVM  |
+| jira.resources.jvm.reservedCodeCache | string | `"512m"` | The memory reserved for the Jira JVM code cache  |
 | jira.s3Storage.avatars.bucketName | string | `nil` |  |
 | jira.s3Storage.avatars.bucketRegion | string | `nil` |  |
 | jira.s3Storage.avatars.endpointOverride | string | `nil` |  |
@@ -187,3 +185,6 @@ Kubernetes: `>=1.21.x-0`
 | volumes.sharedHome.persistentVolumeClaim.resources | object | `{"requests":{"storage":"1Gi"}}` | Specifies the standard K8s resource requests and/or limits for the shared-home volume claims.  |
 | volumes.sharedHome.persistentVolumeClaim.storageClassName | string | `nil` | Specify the name of the 'StorageClass' that should be used for the 'shared-home' volume claim.  |
 | volumes.sharedHome.subPath | string | `nil` | Specifies the sub-directory of the shared-home volume that will be mounted in to the Jira container.  |
+
+----------------------------------------------
+Autogenerated from chart metadata using [helm-docs v1.12.0](https://github.com/norwoodj/helm-docs/releases/v1.12.0)

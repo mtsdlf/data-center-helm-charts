@@ -4,8 +4,6 @@
 
 A chart for installing Confluence Data Center on Kubernetes
 
-For installation please follow [the documentation](https://atlassian.github.io/data-center-helm-charts/).
-
 **Homepage:** <https://atlassian.github.io/data-center-helm-charts/>
 
 ## Source Code
@@ -25,60 +23,60 @@ Kubernetes: `>=1.21.x-0`
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| additionalConfigMaps | list | `[]` | Create additional ConfigMaps with given names, keys and content. Ther Helm release name will be used as a prefix for a ConfigMap name, fileName is used as subPath |
-| additionalContainers | list | `[]` | Additional container definitions that will be added to all Confluence pods |
-| additionalFiles | list | `[]` | Additional existing ConfigMaps and Secrets not managed by Helm that should be mounted into service container. Configuration details below (camelCase is important!): 'name'      - References existing ConfigMap or secret name. 'type'      - 'configMap' or 'secret' 'key'       - The file name. 'mountPath' - The destination directory in a container. VolumeMount and Volumes are added with this name and index position, for example; custom-config-0, keystore-2 |
+| additionalConfigMaps | list | `[]` | Create additional ConfigMaps with given names, keys and content. Ther Helm release name will be used as a prefix for a ConfigMap name, fileName is used as subPath  |
+| additionalContainers | list | `[]` | Additional container definitions that will be added to all Confluence pods  |
+| additionalFiles | list | `[]` | Additional existing ConfigMaps and Secrets not managed by Helm that should be mounted into service container. Configuration details below (camelCase is important!): 'name'      - References existing ConfigMap or secret name. 'type'      - 'configMap' or 'secret' 'key'       - The file name. 'mountPath' - The destination directory in a container. VolumeMount and Volumes are added with this name and index position, for example; custom-config-0, keystore-2  |
 | additionalHosts | list | `[]` | Additional host aliases for each pod, equivalent to adding them to the /etc/hosts file. https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/ |
-| additionalInitContainers | list | `[]` | Additional initContainer definitions that will be added to all Confluence pods |
-| additionalLabels | object | `{}` | Additional labels that should be applied to all resources |
-| affinity | object | `{}` | Standard K8s affinities that will be applied to all Confluence pods |
-| atlassianAnalyticsAndSupport.analytics.enabled | bool | `true` | Mount ConfigMap with selected Helm chart values as a JSON which DC products will read and send analytics events to Atlassian data pipelines |
-| atlassianAnalyticsAndSupport.helmValues.enabled | bool | `true` | Mount ConfigMap with selected Helm chart values as a YAML file which can be optionally including to support.zip |
-| confluence.accessLog.enabled | bool | `true` | Set to 'true' if access logging should be enabled. |
-| confluence.accessLog.localHomeSubPath | string | `"logs"` | The subdirectory within the local-home volume where access logs should be stored. |
-| confluence.accessLog.mountPath | string | `"/opt/atlassian/confluence/logs"` | The path within the Confluence container where the local-home volume should be mounted in order to capture access logs. |
-| confluence.additionalBundledPlugins | list | `[]` | Specifies a list of additional Confluence plugins that should be added to the Confluence container. Note plugins installed via this method will appear as bundled plugins rather than user plugins. These should be specified in the same manner as the 'additionalLibraries' property. Additional details: https://atlassian.github.io/data-center-helm-charts/examples/external_libraries/EXTERNAL_LIBS/ NOTE: only .jar files can be loaded using this approach. OBR's can be extracted (unzipped) to access the associated .jar An alternative to this method is to install the plugins via "Manage Apps" in the product system administration UI. |
-| confluence.additionalCertificates | object | `{"customCmd":null,"secretName":null}` | Certificates to be added to Java truststore. Provide reference to a secret that contains the certificates |
-| confluence.additionalEnvironmentVariables | list | `[]` | Defines any additional environment variables to be passed to the Confluence container. See https://hub.docker.com/r/atlassian/confluence-server for supported variables. |
-| confluence.additionalJvmArgs | list | `[]` | Specifies a list of additional arguments that can be passed to the Confluence JVM, e.g. system properties. |
-| confluence.additionalLibraries | list | `[]` | Specifies a list of additional Java libraries that should be added to the Confluence container. Each item in the list should specify the name of the volume that contains the library, as well as the name of the library file within that volume's root directory. Optionally, a subDirectory field can be included to specify which directory in the volume contains the library file. Additional details: https://atlassian.github.io/data-center-helm-charts/examples/external_libraries/EXTERNAL_LIBS/ |
-| confluence.additionalPorts | list | `[]` | Defines any additional ports for the Confluence container. |
-| confluence.additionalVolumeClaimTemplates | list | `[]` | Defines additional volumeClaimTemplates that should be applied to the Confluence pod. Note that this will not create any corresponding volume mounts; those needs to be defined in confluence.additionalVolumeMounts |
-| confluence.additionalVolumeMounts | list | `[]` | Defines any additional volumes mounts for the Confluence container. These can refer to existing volumes, or new volumes can be defined via 'volumes.additional'. |
-| confluence.clustering.enabled | bool | `false` | Set to 'true' if Data Center clustering should be enabled This will automatically configure cluster peer discovery between cluster nodes. |
-| confluence.clustering.usePodNameAsClusterNodeName | bool | `true` | Set to 'true' if the K8s pod name should be used as the end-user-visible name of the Data Center cluster node. |
-| confluence.containerSecurityContext | object | `{}` | Standard K8s field that holds security configurations that will be applied to a container. https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ |
-| confluence.forceConfigUpdate | bool | `false` | The Docker entrypoint.py generates application configuration on first start; not all of these files are regenerated on subsequent starts. By default, confluence.cfg.xml is generated only once. Set `forceConfigUpdate` to true to change this behavior. |
-| confluence.hazelcastService.annotations | object | `{}` | Additional annotations to apply to the Hazelcast Service |
+| additionalInitContainers | list | `[]` | Additional initContainer definitions that will be added to all Confluence pods  |
+| additionalLabels | object | `{}` | Additional labels that should be applied to all resources  |
+| affinity | object | `{}` | Standard K8s affinities that will be applied to all Confluence pods  |
+| atlassianAnalyticsAndSupport.analytics.enabled | bool | `true` | Mount ConfigMap with selected Helm chart values as a JSON which DC products will read and send analytics events to Atlassian data pipelines  |
+| atlassianAnalyticsAndSupport.helmValues.enabled | bool | `true` | Mount ConfigMap with selected Helm chart values as a YAML file which can be optionally including to support.zip  |
+| confluence.accessLog.enabled | bool | `true` | Set to 'true' if access logging should be enabled.  |
+| confluence.accessLog.localHomeSubPath | string | `"logs"` | The subdirectory within the local-home volume where access logs should be stored.  |
+| confluence.accessLog.mountPath | string | `"/opt/atlassian/confluence/logs"` | The path within the Confluence container where the local-home volume should be mounted in order to capture access logs.  |
+| confluence.additionalBundledPlugins | list | `[]` | Specifies a list of additional Confluence plugins that should be added to the Confluence container. Note plugins installed via this method will appear as bundled plugins rather than user plugins. These should be specified in the same manner as the 'additionalLibraries' property. Additional details: https://atlassian.github.io/data-center-helm-charts/examples/external_libraries/EXTERNAL_LIBS/  NOTE: only .jar files can be loaded using this approach. OBR's can be extracted (unzipped) to access the associated .jar  An alternative to this method is to install the plugins via "Manage Apps" in the product system administration UI.  |
+| confluence.additionalCertificates | object | `{"customCmd":null,"secretName":null}` | Certificates to be added to Java truststore. Provide reference to a secret that contains the certificates  |
+| confluence.additionalEnvironmentVariables | list | `[]` | Defines any additional environment variables to be passed to the Confluence container. See https://hub.docker.com/r/atlassian/confluence-server for supported variables.  |
+| confluence.additionalJvmArgs | list | `[]` | Specifies a list of additional arguments that can be passed to the Confluence JVM, e.g. system properties.  |
+| confluence.additionalLibraries | list | `[]` | Specifies a list of additional Java libraries that should be added to the Confluence container. Each item in the list should specify the name of the volume that contains the library, as well as the name of the library file within that volume's root directory. Optionally, a subDirectory field can be included to specify which directory in the volume contains the library file. Additional details: https://atlassian.github.io/data-center-helm-charts/examples/external_libraries/EXTERNAL_LIBS/  |
+| confluence.additionalPorts | list | `[]` | Defines any additional ports for the Confluence container.  |
+| confluence.additionalVolumeClaimTemplates | list | `[]` | Defines additional volumeClaimTemplates that should be applied to the Confluence pod. Note that this will not create any corresponding volume mounts; those needs to be defined in confluence.additionalVolumeMounts  |
+| confluence.additionalVolumeMounts | list | `[]` | Defines any additional volumes mounts for the Confluence container. These can refer to existing volumes, or new volumes can be defined via 'volumes.additional'.  |
+| confluence.clustering.enabled | bool | `false` | Set to 'true' if Data Center clustering should be enabled This will automatically configure cluster peer discovery between cluster nodes.  |
+| confluence.clustering.usePodNameAsClusterNodeName | bool | `true` | Set to 'true' if the K8s pod name should be used as the end-user-visible name of the Data Center cluster node.  |
+| confluence.containerSecurityContext | object | `{}` | Standard K8s field that holds security configurations that will be applied to a container. https://kubernetes.io/docs/tasks/configure-pod-container/security-context/  |
+| confluence.forceConfigUpdate | bool | `false` | The Docker entrypoint.py generates application configuration on first start; not all of these files are regenerated on subsequent starts. By default, confluence.cfg.xml is generated only once. Set `forceConfigUpdate` to true to change this behavior.  |
+| confluence.hazelcastService.annotations | object | `{}` | Additional annotations to apply to the Hazelcast Service  |
 | confluence.hazelcastService.enabled | bool | `false` | Enable or disable an additional Hazelcast service that Confluence nodes can use to join a cluster. It is recommended to create a separate Hazelcast service if the Confluence service uses a LoadBalancer type (e.g., NLB), ensuring that the Hazelcast port is not exposed at all. |
-| confluence.hazelcastService.port | int | `5701` | The port on which the Confluence K8s Hazelcast Service will listen |
-| confluence.hazelcastService.type | string | `"ClusterIP"` | The type of the Hazelcast K8s service to use for Confluence |
+| confluence.hazelcastService.port | int | `5701` | The port on which the Confluence K8s Hazelcast Service will listen  |
+| confluence.hazelcastService.type | string | `"ClusterIP"` | The type of the Hazelcast K8s service to use for Confluence  |
 | confluence.jvmDebug.enabled | bool | `false` | Set to 'true' for remote debugging. Confluence JVM will be started with debugging port 5005 open. |
-| confluence.license.secretKey | string | `"license-key"` | The key in the K8s Secret that contains the Confluence license key |
-| confluence.license.secretName | string | `nil` | The name of the K8s Secret that contains the Confluence license key. If specified, then the license will be automatically populated during Confluence setup. Otherwise, it will need to be provided via the browser after initial startup. An Example of creating a K8s secret for the license below: 'kubectl create secret generic <secret-name> --from-literal=license-key=<license> https://kubernetes.io/docs/concepts/configuration/secret/#opaque-secrets |
-| confluence.livenessProbe.customProbe | object | `{}` | Custom livenessProbe to override the default tcpSocket probe |
-| confluence.livenessProbe.enabled | bool | `false` | Whether to apply the livenessProbe check to pod. |
-| confluence.livenessProbe.failureThreshold | int | `12` | The number of consecutive failures of the Confluence container liveness probe before the pod fails liveness checks. |
-| confluence.livenessProbe.initialDelaySeconds | int | `60` | Time to wait before starting the first probe |
-| confluence.livenessProbe.periodSeconds | int | `5` | How often (in seconds) the Confluence container liveness probe will run |
-| confluence.livenessProbe.timeoutSeconds | int | `1` | Number of seconds after which the probe times out |
-| confluence.ports.hazelcast | int | `5701` | The port on which the Confluence container listens for Hazelcast traffic |
-| confluence.ports.http | int | `8090` | The port on which the Confluence container listens for HTTP traffic |
-| confluence.postStart | object | `{"command":null}` | PostStart is executed immediately after a container is created. However, there is no guarantee that the hook will execute before the container ENTRYPOINT. See: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks |
-| confluence.readinessProbe.customProbe | object | `{}` | Custom readinessProbe to override the default /status httpGet |
-| confluence.readinessProbe.enabled | bool | `true` | Whether to apply the readinessProbe check to pod. |
-| confluence.readinessProbe.failureThreshold | int | `6` | The number of consecutive failures of the Confluence container readiness probe before the pod fails readiness checks. |
-| confluence.readinessProbe.initialDelaySeconds | int | `10` | The initial delay (in seconds) for the Confluence container readiness probe, after which the probe will start running. |
-| confluence.readinessProbe.periodSeconds | int | `5` | How often (in seconds) the Confluence container readiness probe will run |
-| confluence.readinessProbe.timeoutSeconds | int | `1` | Number of seconds after which the probe times out |
-| confluence.resources.container.requests.cpu | string | `"2"` | Initial CPU request by Confluence pod. |
-| confluence.resources.container.requests.memory | string | `"2G"` | Initial Memory request by Confluence pod |
-| confluence.resources.jvm.maxHeap | string | `"1g"` | The maximum amount of heap memory that will be used by the Confluence JVM |
-| confluence.resources.jvm.minHeap | string | `"1g"` | The minimum amount of heap memory that will be used by the Confluence JVM |
-| confluence.resources.jvm.reservedCodeCache | string | `"256m"` | The memory reserved for the Confluence JVM code cache |
+| confluence.license.secretKey | string | `"license-key"` | The key in the K8s Secret that contains the Confluence license key  |
+| confluence.license.secretName | string | `nil` | The name of the K8s Secret that contains the Confluence license key. If specified, then the license will be automatically populated during Confluence setup. Otherwise, it will need to be provided via the browser after initial startup. An Example of creating a K8s secret for the license below: 'kubectl create secret generic <secret-name> --from-literal=license-key=<license> https://kubernetes.io/docs/concepts/configuration/secret/#opaque-secrets  |
+| confluence.livenessProbe.customProbe | object | `{}` | Custom livenessProbe to override the default tcpSocket probe  |
+| confluence.livenessProbe.enabled | bool | `false` | Whether to apply the livenessProbe check to pod.  |
+| confluence.livenessProbe.failureThreshold | int | `12` | The number of consecutive failures of the Confluence container liveness probe before the pod fails liveness checks.  |
+| confluence.livenessProbe.initialDelaySeconds | int | `60` | Time to wait before starting the first probe  |
+| confluence.livenessProbe.periodSeconds | int | `5` | How often (in seconds) the Confluence container liveness probe will run  |
+| confluence.livenessProbe.timeoutSeconds | int | `1` | Number of seconds after which the probe times out  |
+| confluence.ports.hazelcast | int | `5701` | The port on which the Confluence container listens for Hazelcast traffic  |
+| confluence.ports.http | int | `8090` | The port on which the Confluence container listens for HTTP traffic  |
+| confluence.postStart | object | `{"command":null}` | PostStart is executed immediately after a container is created. However, there is no guarantee that the hook will execute before the container ENTRYPOINT. See: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks  |
+| confluence.readinessProbe.customProbe | object | `{}` | Custom readinessProbe to override the default /status httpGet  |
+| confluence.readinessProbe.enabled | bool | `true` | Whether to apply the readinessProbe check to pod.  |
+| confluence.readinessProbe.failureThreshold | int | `6` | The number of consecutive failures of the Confluence container readiness probe before the pod fails readiness checks.  |
+| confluence.readinessProbe.initialDelaySeconds | int | `10` | The initial delay (in seconds) for the Confluence container readiness probe, after which the probe will start running.  |
+| confluence.readinessProbe.periodSeconds | int | `5` | How often (in seconds) the Confluence container readiness probe will run  |
+| confluence.readinessProbe.timeoutSeconds | int | `1` | Number of seconds after which the probe times out  |
+| confluence.resources.container.requests.cpu | string | `"2"` | Initial CPU request by Confluence pod.  |
+| confluence.resources.container.requests.memory | string | `"2G"` | Initial Memory request by Confluence pod  |
+| confluence.resources.jvm.maxHeap | string | `"1g"` | The maximum amount of heap memory that will be used by the Confluence JVM  |
+| confluence.resources.jvm.minHeap | string | `"1g"` | The minimum amount of heap memory that will be used by the Confluence JVM  |
+| confluence.resources.jvm.reservedCodeCache | string | `"256m"` | The memory reserved for the Confluence JVM code cache  |
 | confluence.s3AttachmentsStorage.bucketName | string | `nil` |  |
 | confluence.s3AttachmentsStorage.bucketRegion | string | `nil` |  |
-| confluence.s3AttachmentsStorage.endpointOverride | string | `nil` | EXPERIMENTAL Feature! Override the default AWS API endpoint with a custom one, for example to use Minio as object storage https://min.io/ |
+| confluence.s3AttachmentsStorage.endpointOverride | string | `nil` | EXPERIMENTAL Feature! Override the default AWS API endpoint with a custom one, for example to use Minio as object storage https://min.io/  |
 | confluence.securityContext.fsGroup | int | `2002` | The GID used by the Confluence docker image GID will default to 2002 if not supplied and securityContextEnabled is set to true. This is intended to ensure that the shared-home volume is group-writeable by the GID used by the Confluence container. However, this doesn't appear to work for NFS volumes due to a K8s bug: https://github.com/kubernetes/examples/issues/260 |
 | confluence.securityContextEnabled | bool | `true` | Whether to apply security context to pod.  |
 | confluence.seraphConfig | object | `{"autoLoginCookieAge":"1209600","generateByHelm":false}` | By default seraph-config.xml is generated in the container entrypoint from a template shipped with an official Confluence image. However, seraph-config.xml generation may fail if container is not run as root, which is a common case if Confluence is deployed to OpenShift.  |
@@ -175,37 +173,37 @@ Kubernetes: `>=1.21.x-0`
 | serviceAccount.clusterRoleBinding.name | string | `nil` | The name of the ClusterRoleBinding to be created. If not specified, but the "serviceAccount.clusterRoleBinding.create" flag is set to 'true', then the ClusterRoleBinding name will be auto-generated.  |
 | serviceAccount.create | bool | `true` | Set to 'true' if a ServiceAccount should be created, or 'false' if it already exists.  |
 | serviceAccount.eksIrsa.roleArn | string | `nil` |  |
-| serviceAccount.imagePullSecrets | list | `[]` | For Docker images hosted in private registries, define the list of image pull secrets that should be utilized by the created ServiceAccount https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod |
-| serviceAccount.name | string | `nil` | The name of the ServiceAccount to be used by the pods. If not specified, but the "serviceAccount.create" flag is set to 'true', then the ServiceAccount name will be auto-generated, otherwise the 'default' ServiceAccount will be used. https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server |
-| serviceAccount.role.create | bool | `true` | Create a role for Hazelcast client with privileges to get and list pods and endpoints in the namespace. Set to false if you need to create a Role and RoleBinding manually |
-| serviceAccount.roleBinding | object | `{"create":true}` | Grant permissions defined in Role (list and get pods and endpoints) to a service account. |
-| synchrony.additionalCertificates | object | `{"customCmd":null,"secretName":null}` | Certificates to be added to Java truststore. Provide reference to a secret that contains the certificates |
-| synchrony.additionalJvmArgs | list | `[]` | Specifies a list of additional arguments that can be passed to the Synchrony JVM, e.g. system properties. |
-| synchrony.additionalLibraries | list | `[]` | Specifies a list of additional Java libraries that should be added to the Synchrony container. Each item in the list should specify the name of the volume that contains the library, as well as the name of the library file within that volume's root directory. Optionally, a subDirectory field can be included to specify which directory in the volume contains the library file. Additional details: https://atlassian.github.io/data-center-helm-charts/examples/external_libraries/EXTERNAL_LIBS/ |
-| synchrony.additionalPorts | list | `[]` | Defines any additional ports for the Synchrony container. |
-| synchrony.additionalVolumeMounts | list | `[]` | Defines any additional volumes mounts for the Synchrony container. These can refer to existing volumes, or new volumes can be defined via 'volumes.additionalSynchrony'. |
-| synchrony.containerSecurityContext | object | `{}` | Standard K8s field that holds security configurations that will be applied to a container. https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ |
+| serviceAccount.imagePullSecrets | list | `[]` | For Docker images hosted in private registries, define the list of image pull secrets that should be utilized by the created ServiceAccount https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod  |
+| serviceAccount.name | string | `nil` | The name of the ServiceAccount to be used by the pods. If not specified, but the "serviceAccount.create" flag is set to 'true', then the ServiceAccount name will be auto-generated, otherwise the 'default' ServiceAccount will be used. https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server  |
+| serviceAccount.role.create | bool | `true` | Create a role for Hazelcast client with privileges to get and list pods and endpoints in the namespace. Set to false if you need to create a Role and RoleBinding manually  |
+| serviceAccount.roleBinding | object | `{"create":true}` | Grant permissions defined in Role (list and get pods and endpoints) to a service account.  |
+| synchrony.additionalCertificates | object | `{"customCmd":null,"secretName":null}` | Certificates to be added to Java truststore. Provide reference to a secret that contains the certificates  |
+| synchrony.additionalJvmArgs | list | `[]` | Specifies a list of additional arguments that can be passed to the Synchrony JVM, e.g. system properties.  |
+| synchrony.additionalLibraries | list | `[]` | Specifies a list of additional Java libraries that should be added to the Synchrony container. Each item in the list should specify the name of the volume that contains the library, as well as the name of the library file within that volume's root directory. Optionally, a subDirectory field can be included to specify which directory in the volume contains the library file. Additional details: https://atlassian.github.io/data-center-helm-charts/examples/external_libraries/EXTERNAL_LIBS/  |
+| synchrony.additionalPorts | list | `[]` | Defines any additional ports for the Synchrony container.  |
+| synchrony.additionalVolumeMounts | list | `[]` | Defines any additional volumes mounts for the Synchrony container. These can refer to existing volumes, or new volumes can be defined via 'volumes.additionalSynchrony'.  |
+| synchrony.containerSecurityContext | object | `{}` | Standard K8s field that holds security configurations that will be applied to a container. https://kubernetes.io/docs/tasks/configure-pod-container/security-context/  |
 | synchrony.enabled | bool | `false` | Set to 'true' if Synchrony (i.e. collaborative editing) should be enabled. This will result in a separate StatefulSet and Service to be created for Synchrony. If disabled, then collaborative editing will be disabled in Confluence. |
 | synchrony.podAnnotations | object | `{}` | Custom annotations that will be applied to all Synchrony pods. When undefined, default to '.Values.podAnnotations' which are Confluence pod annotations (if defined) |
-| synchrony.ports.hazelcast | int | `5701` | The port on which the Synchrony container listens for Hazelcast traffic |
-| synchrony.ports.http | int | `8091` | The port on which the Synchrony container listens for HTTP traffic |
-| synchrony.readinessProbe.failureThreshold | int | `10` | The number of consecutive failures of the Synchrony container readiness probe before the pod fails readiness checks. |
-| synchrony.readinessProbe.healthcheckPath | string | `"/synchrony/heartbeat"` | The healthcheck path to check against for the Synchrony container useful when configuring behind a reverse-proxy or loadbalancer https://confluence.atlassian.com/confkb/cannot-enable-collaborative-editing-on-synchrony-cluster-962962742.html |
-| synchrony.readinessProbe.initialDelaySeconds | int | `5` | The initial delay (in seconds) for the Synchrony container readiness probe, after which the probe will start running. |
-| synchrony.readinessProbe.periodSeconds | int | `1` | How often (in seconds) the Synchrony container readiness probe will run |
-| synchrony.replicaCount | int | `1` | Number of Synchrony pods |
-| synchrony.resources.container.requests.cpu | string | `"2"` | Initial CPU request by Synchrony pod. Because the container CPU request value is used in -XX:ActiveProcessorCount argument to Synchrony JVM  only integers are allowed, e.g. 1, 2, 3 etc. If you want to have a small CPU claim, set it to 30m, 50m, etc. Any container cpu request value containing `m` character will be converted to -XX:ActiveProcessorCount=1 See: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu |
-| synchrony.resources.container.requests.memory | string | `"2.5G"` | Initial Memory request Synchrony pod |
-| synchrony.resources.jvm.maxHeap | string | `"2g"` | The minimum amount of heap memory that will be used by the Synchrony JVM |
-| synchrony.resources.jvm.minHeap | string | `"1g"` | The maximum amount of heap memory that will be used by the Synchrony JVM |
-| synchrony.resources.jvm.stackSize | string | `"2048k"` | The memory allocated for the Synchrony stack |
+| synchrony.ports.hazelcast | int | `5701` | The port on which the Synchrony container listens for Hazelcast traffic  |
+| synchrony.ports.http | int | `8091` | The port on which the Synchrony container listens for HTTP traffic  |
+| synchrony.readinessProbe.failureThreshold | int | `10` | The number of consecutive failures of the Synchrony container readiness probe before the pod fails readiness checks.  |
+| synchrony.readinessProbe.healthcheckPath | string | `"/synchrony/heartbeat"` | The healthcheck path to check against for the Synchrony container useful when configuring behind a reverse-proxy or loadbalancer https://confluence.atlassian.com/confkb/cannot-enable-collaborative-editing-on-synchrony-cluster-962962742.html  |
+| synchrony.readinessProbe.initialDelaySeconds | int | `5` | The initial delay (in seconds) for the Synchrony container readiness probe, after which the probe will start running.  |
+| synchrony.readinessProbe.periodSeconds | int | `1` | How often (in seconds) the Synchrony container readiness probe will run  |
+| synchrony.replicaCount | int | `1` | Number of Synchrony pods  |
+| synchrony.resources.container.requests.cpu | string | `"2"` | Initial CPU request by Synchrony pod. Because the container CPU request value is used in -XX:ActiveProcessorCount argument to Synchrony JVM  only integers are allowed, e.g. 1, 2, 3 etc. If you want to have a small CPU claim, set it to 30m, 50m, etc. Any container cpu request value containing `m` character will be converted to -XX:ActiveProcessorCount=1  See: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu  |
+| synchrony.resources.container.requests.memory | string | `"2.5G"` | Initial Memory request Synchrony pod  |
+| synchrony.resources.jvm.maxHeap | string | `"2g"` | The minimum amount of heap memory that will be used by the Synchrony JVM  |
+| synchrony.resources.jvm.minHeap | string | `"1g"` | The maximum amount of heap memory that will be used by the Synchrony JVM  |
+| synchrony.resources.jvm.stackSize | string | `"2048k"` | The memory allocated for the Synchrony stack  |
 | synchrony.securityContext.fsGroup | int | `2002` | The GID used by the Confluence docker image GID will default to 2002 if not supplied and securityContextEnabled is set to true. This is intended to ensure that the shared-home volume is group-writeable by the GID used by the Confluence container. However, this doesn't appear to work for NFS volumes due to a K8s bug: https://github.com/kubernetes/examples/issues/260 |
 | synchrony.securityContextEnabled | bool | `true` |  |
-| synchrony.service.annotations | object | `{}` | Annotations to apply to Synchrony Service |
-| synchrony.service.loadBalancerIP | string | `nil` | Use specific loadBalancerIP. Only applies to service type LoadBalancer. |
-| synchrony.service.port | int | `80` | The port on which the Synchrony K8s Service will listen |
-| synchrony.service.type | string | `"ClusterIP"` | The type of K8s service to use for Synchrony |
-| synchrony.setPermissions | bool | `true` | Boolean to define whether to set synchrony home directory permissions on startup of Synchrony container. Set to 'false' to disable this behaviour. |
+| synchrony.service.annotations | object | `{}` | Annotations to apply to Synchrony Service  |
+| synchrony.service.loadBalancerIP | string | `nil` | Use specific loadBalancerIP. Only applies to service type LoadBalancer.  |
+| synchrony.service.port | int | `80` | The port on which the Synchrony K8s Service will listen  |
+| synchrony.service.type | string | `"ClusterIP"` | The type of K8s service to use for Synchrony  |
+| synchrony.setPermissions | bool | `true` | Boolean to define whether to set synchrony home directory permissions on startup of Synchrony container. Set to 'false' to disable this behaviour.  |
 | synchrony.shutdown.terminationGracePeriodSeconds | int | `25` | The termination grace period for pods during shutdown. This should be set to the Synchrony internal grace period (default 20 seconds), plus a small buffer to allow the JVM to fully terminate. |
 | synchrony.topologySpreadConstraints | list | `[]` | Defines topology spread constraints for Synchrony pods. See details: https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/  |
 | testPods | object | `{"affinity":{},"annotations":{},"image":{"permissionsTestContainer":"debian:stable-slim","statusTestContainer":"alpine:latest"},"labels":{},"nodeSelector":{},"schedulerName":null,"tolerations":[]}` | Metadata and pod spec for pods started in Helm tests  |
@@ -239,3 +237,6 @@ Kubernetes: `>=1.21.x-0`
 | volumes.synchronyHome.persistentVolumeClaim.storageClassName | string | `nil` | Specify the name of the 'StorageClass' that should be used for the synchrony-home volume claim.  |
 | volumes.synchronyHome.persistentVolumeClaimRetentionPolicy.whenDeleted | string | `nil` | Configures the volume retention behavior that applies when the StatefulSet is deleted.  |
 | volumes.synchronyHome.persistentVolumeClaimRetentionPolicy.whenScaled | string | `nil` | Configures the volume retention behavior that applies when the replica count of the StatefulSet is reduced.  |
+
+----------------------------------------------
+Autogenerated from chart metadata using [helm-docs v1.12.0](https://github.com/norwoodj/helm-docs/releases/v1.12.0)

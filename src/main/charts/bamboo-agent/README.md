@@ -4,8 +4,6 @@
 
 A chart for installing Bamboo Data Center remote agents on Kubernetes
 
-For installation please follow [the documentation](https://atlassian.github.io/data-center-helm-charts/).
-
 **Homepage:** <https://www.atlassian.com/software/bamboo>
 
 ## Source Code
@@ -25,28 +23,28 @@ Kubernetes: `>=1.21.x-0`
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| additionalContainers | list | `[]` | Additional container definitions that will be added to all Bamboo agent pods |
-| additionalFiles | list | `[]` | Additional existing ConfigMaps and Secrets not managed by Helm that should be mounted into service container. Configuration details below (camelCase is important!): 'name'      - References existing ConfigMap or Secret name. 'type'      - 'configMap' or 'secret' 'key'       - The file name. 'mountPath' - The destination directory in a container. VolumeMount and Volumes are added with this name and index position, for example; custom-config-0, keystore-2 |
+| additionalContainers | list | `[]` | Additional container definitions that will be added to all Bamboo agent pods  |
+| additionalFiles | list | `[]` | Additional existing ConfigMaps and Secrets not managed by Helm that should be mounted into service container. Configuration details below (camelCase is important!): 'name'      - References existing ConfigMap or Secret name. 'type'      - 'configMap' or 'secret' 'key'       - The file name. 'mountPath' - The destination directory in a container. VolumeMount and Volumes are added with this name and index position, for example; custom-config-0, keystore-2  |
 | additionalHosts | list | `[]` | Additional host aliases for each pod, equivalent to adding them to the /etc/hosts file. https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/ |
-| additionalInitContainers | list | `[]` | Additional initContainer definitions that will be added to all Bamboo agent pods |
-| additionalLabels | object | `{}` | Additional labels that should be applied to all resources |
-| affinity | object | `{}` | Standard K8s affinities that will be applied to all Bamboo agent pods |
-| agent.additionalEnvironmentVariables | list | `[]` | Defines any additional environment variables to be passed to the Bamboo agent container. See https://bitbucket.org/atlassian-docker/docker-bamboo-agent-base for supported variables. |
-| agent.additionalPorts | list | `[]` | Defines any additional ports for the Bamboo agent container. |
-| agent.additionalVolumeMounts | object | `{}` | Defines any additional volume mounts for the Bamboo agent container. These can refer to existing volumes, or new volumes can be defined via 'volumes.additional'. |
-| agent.containerSecurityContext | object | `{}` | Standard K8s field that holds security configurations that will be applied to a container. https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ |
-| agent.readinessProbe.command | string | `"/probe-readiness.sh"` | Command to use to check the readiness status. This is provided by the agent image. |
-| agent.readinessProbe.failureThreshold | int | `30` | The number of consecutive failures of the Bamboo agent container readiness probe before the pod fails readiness checks. |
-| agent.readinessProbe.initialDelaySeconds | int | `1` | The initial delay (in seconds) for the Bamboo agent container readiness probe, after which the probe will start running. When used in conjunction with a startupProbe this can be short. |
-| agent.readinessProbe.periodSeconds | int | `5` | How often (in seconds) the Bamboo agent container readiness probe will run |
-| agent.resources.container.requests.cpu | string | `"1"` | Initial CPU request by Bamboo agent pod |
-| agent.resources.container.requests.memory | string | `"2G"` | Initial Memory request by Bamboo agent pod |
-| agent.resources.jvm.maxHeap | string | `"512m"` | The maximum amount of heap memory that will be used by the Bamboo agent JVM |
-| agent.resources.jvm.minHeap | string | `"256m"` | The minimum amount of heap memory that will be used by the Bamboo agent JVM |
-| agent.securityContext.fsGroup | int | `2005` | The GID used by the Bamboo docker image GID will default to 2005 if not supplied and securityContextEnabled is set to true. This is intended to ensure that the shared-home volume is group-writeable by the GID used by the Bamboo container. However, this doesn't appear to work for NFS volumes due to a K8s bug: https://github.com/kubernetes/examples/issues/260 |
-| agent.securityContextEnabled | bool | `true` |  |
+| additionalInitContainers | list | `[]` | Additional initContainer definitions that will be added to all Bamboo agent pods  |
+| additionalLabels | object | `{}` | Additional labels that should be applied to all resources  |
+| affinity | object | `{}` | Standard K8s affinities that will be applied to all Bamboo agent pods  |
+| agent.additionalEnvironmentVariables | list | `[]` | Defines any additional environment variables to be passed to the Bamboo agent container. See https://bitbucket.org/atlassian-docker/docker-bamboo-agent-base for supported variables.  |
+| agent.additionalPorts | list | `[]` | Defines any additional ports for the Bamboo agent container.  |
+| agent.additionalVolumeMounts | object | `{}` | Defines any additional volume mounts for the Bamboo agent container. These can refer to existing volumes, or new volumes can be defined via 'volumes.additional'.  |
+| agent.containerSecurityContext | object | `{}` | Standard K8s field that holds security configurations that will be applied to a container. https://kubernetes.io/docs/tasks/configure-pod-container/security-context/  |
+| agent.readinessProbe.command | string | `"/probe-readiness.sh"` | Command to use to check the readiness status. This is provided by the agent image.  |
+| agent.readinessProbe.failureThreshold | int | `30` | The number of consecutive failures of the Bamboo agent container readiness probe before the pod fails readiness checks.  |
+| agent.readinessProbe.initialDelaySeconds | int | `1` | The initial delay (in seconds) for the Bamboo agent container readiness probe, after which the probe will start running. When used in conjunction with a startupProbe this can be short.  |
+| agent.readinessProbe.periodSeconds | int | `5` | How often (in seconds) the Bamboo agent container readiness probe will run  |
+| agent.resources.container.requests.cpu | string | `"1"` | Initial CPU request by Bamboo agent pod  |
+| agent.resources.container.requests.memory | string | `"2G"` | Initial Memory request by Bamboo agent pod  |
+| agent.resources.jvm.maxHeap | string | `"512m"` | The maximum amount of heap memory that will be used by the Bamboo agent JVM  |
+| agent.resources.jvm.minHeap | string | `"256m"` | The minimum amount of heap memory that will be used by the Bamboo agent JVM  |
+| agent.securityContext.fsGroup | int | `2005` | The GID used by the Bamboo docker image GID will default to 2005 if not supplied and securityContextEnabled is set to true. This is intended to ensure that the shared-home volume is group-writeable by the GID used by the Bamboo container. However, this doesn't appear to work for NFS volumes due to a K8s bug: https://github.com/kubernetes/examples/issues/260  |
+| agent.securityContextEnabled | bool | `true` | Whether to apply security context to pod.  |
 | agent.securityToken.secretKey | string | `"security-token"` |  |
-| agent.securityToken.secretName | string | `nil` | The name of the K8s Secret that contains the security token. When specified the token will be automatically utilised on agent boot. An Example of creating a K8s secret for the secret below: 'kubectl create secret generic <secret-name> --from-literal=security-token=<security token>' https://kubernetes.io/docs/concepts/configuration/secret/#opaque-secrets |
+| agent.securityToken.secretName | string | `nil` | The name of the K8s Secret that contains the security token. When specified the token will be automatically utilised on agent boot. An Example of creating a K8s secret for the secret below: 'kubectl create secret generic <secret-name> --from-literal=security-token=<security token>' https://kubernetes.io/docs/concepts/configuration/secret/#opaque-secrets  |
 | agent.server | string | `nil` |  |
 | agent.shutdown.command | string | `nil` | Custom command for a [preStop hook](https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/). Undefined by default which means no pre-stop hook is being executed when an agent container needs to be stopped and deleted  |
 | agent.shutdown.terminationGracePeriodSeconds | int | `30` | The termination grace period for pods during shutdown. This should be set to the internal grace period, plus a small buffer to allow the JVM to fully terminate.  |
@@ -71,3 +69,6 @@ Kubernetes: `>=1.21.x-0`
 | serviceAccount.name | string | `nil` | The name of the ServiceAccount to be used by the pods. If not specified, but the "serviceAccount.create" flag is set to 'true', then the ServiceAccount name will be auto-generated, otherwise the 'default' ServiceAccount will be used. https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server  |
 | tolerations | list | `[]` | Standard K8s tolerations that will be applied to all Bamboo agent pods  |
 | volumes | object | `{"additional":null}` | Defines additional volumes that should be applied to all Bamboo agent pods. Note that this will not create any corresponding volume mounts which need to be defined in bamboo.additionalVolumeMounts  |
+
+----------------------------------------------
+Autogenerated from chart metadata using [helm-docs v1.12.0](https://github.com/norwoodj/helm-docs/releases/v1.12.0)

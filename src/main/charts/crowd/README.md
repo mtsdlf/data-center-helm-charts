@@ -4,8 +4,6 @@
 
 A chart for installing Crowd Data Center on Kubernetes
 
-For installation please follow [the documentation](https://atlassian.github.io/data-center-helm-charts/).
-
 **Homepage:** <https://atlassian.github.io/data-center-helm-charts/>
 
 ## Source Code
@@ -25,25 +23,25 @@ Kubernetes: `>=1.21.x-0`
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| additionalConfigMaps | list | `[]` | Create additional ConfigMaps with given names, keys and content. Ther Helm release name will be used as a prefix for a ConfigMap name, fileName is used as subPath |
-| additionalContainers | list | `[]` | Additional container definitions that will be added to all Crowd pods |
-| additionalFiles | list | `[]` | Additional existing ConfigMaps and Secrets not managed by Helm that should be mounted into service container. Configuration details below (camelCase is important!): 'name'      - References existing ConfigMap or secret name. 'type'      - 'configMap' or 'secret' 'key'       - The file name. 'mountPath' - The destination directory in a container. VolumeMount and Volumes are added with this name and index position, for example; custom-config-0, keystore-2 |
+| additionalConfigMaps | list | `[]` | Create additional ConfigMaps with given names, keys and content. Ther Helm release name will be used as a prefix for a ConfigMap name, fileName is used as subPath  |
+| additionalContainers | list | `[]` | Additional container definitions that will be added to all Crowd pods  |
+| additionalFiles | list | `[]` | Additional existing ConfigMaps and Secrets not managed by Helm that should be mounted into service container. Configuration details below (camelCase is important!): 'name'      - References existing ConfigMap or secret name. 'type'      - 'configMap' or 'secret' 'key'       - The file name. 'mountPath' - The destination directory in a container. VolumeMount and Volumes are added with this name and index position, for example; custom-config-0, keystore-2  |
 | additionalHosts | list | `[]` | Additional host aliases for each pod, equivalent to adding them to the /etc/hosts file. https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/ |
-| additionalInitContainers | list | `[]` | Additional initContainer definitions that will be added to all Crowd pods |
-| additionalLabels | object | `{}` | Additional labels that should be applied to all resources |
-| affinity | object | `{}` | Standard K8s affinities that will be applied to all Crowd pods |
-| atlassianAnalyticsAndSupport.analytics.enabled | bool | `true` | Mount ConfigMap with selected Helm chart values as a JSON which DC products will read and send analytics events to Atlassian data pipelines |
-| atlassianAnalyticsAndSupport.helmValues.enabled | bool | `true` | Mount ConfigMap with selected Helm chart values as a YAML file which can be optionally including to support.zip |
-| crowd.accessLog.enabled | bool | `true` | Set to 'true' if access logging should be enabled. |
-| crowd.accessLog.localHomeSubPath | string | `"logs"` | The subdirectory within the local-home volume where access logs should be stored. |
-| crowd.accessLog.mountPath | string | `"/opt/atlassian/crowd/apache-tomcat/logs"` | The path within the Crowd container where the local-home volume should be mounted in order to capture access logs. |
-| crowd.additionalBundledPlugins | list | `[]` | Specifies a list of additional Crowd plugins that should be added to the Crowd container. Note plugins installed via this method will appear as bundled plugins rather than user plugins. These should be specified in the same manner as the 'additionalLibraries' property. Additional details: https://atlassian.github.io/data-center-helm-charts/examples/external_libraries/EXTERNAL_LIBS/ NOTE: only .jar files can be loaded using this approach. OBR's can be extracted (unzipped) to access the associated .jar An alternative to this method is to install the plugins via "Manage Apps" in the product system administration UI. |
-| crowd.additionalCertificates | object | `{"customCmd":null,"secretName":null}` | Certificates to be added to Java truststore. Provide reference to a secret that contains the certificates |
+| additionalInitContainers | list | `[]` | Additional initContainer definitions that will be added to all Crowd pods  |
+| additionalLabels | object | `{}` | Additional labels that should be applied to all resources  |
+| affinity | object | `{}` | Standard K8s affinities that will be applied to all Crowd pods  |
+| atlassianAnalyticsAndSupport.analytics.enabled | bool | `true` | Mount ConfigMap with selected Helm chart values as a JSON which DC products will read and send analytics events to Atlassian data pipelines  |
+| atlassianAnalyticsAndSupport.helmValues.enabled | bool | `true` | Mount ConfigMap with selected Helm chart values as a YAML file which can be optionally including to support.zip  |
+| crowd.accessLog.enabled | bool | `true` | Set to 'true' if access logging should be enabled.  |
+| crowd.accessLog.localHomeSubPath | string | `"logs"` | The subdirectory within the local-home volume where access logs should be stored.  |
+| crowd.accessLog.mountPath | string | `"/opt/atlassian/crowd/apache-tomcat/logs"` | The path within the Crowd container where the local-home volume should be mounted in order to capture access logs.  |
+| crowd.additionalBundledPlugins | list | `[]` | Specifies a list of additional Crowd plugins that should be added to the Crowd container. Note plugins installed via this method will appear as bundled plugins rather than user plugins. These should be specified in the same manner as the 'additionalLibraries' property. Additional details: https://atlassian.github.io/data-center-helm-charts/examples/external_libraries/EXTERNAL_LIBS/  NOTE: only .jar files can be loaded using this approach. OBR's can be extracted (unzipped) to access the associated .jar  An alternative to this method is to install the plugins via "Manage Apps" in the product system administration UI.  |
+| crowd.additionalCertificates | object | `{"customCmd":null,"secretName":null}` | Certificates to be added to Java truststore. Provide reference to a secret that contains the certificates  |
 | crowd.additionalEnvironmentVariables | list | `[]` | Defines any additional environment variables to be passed to the Crowd container. See https://hub.docker.com/r/atlassian/crowd for supported variables. |
-| crowd.additionalJvmArgs | list | `[]` | Specifies a list of additional arguments that can be passed to the Crowd JVM, e.g. system properties. |
-| crowd.additionalLibraries | list | `[]` | Specifies a list of additional Java libraries that should be added to the Crowd container. Each item in the list should specify the name of the volume that contains the library, as well as the name of the library file within that volume's root directory. Optionally, a subDirectory field can be included to specify which directory in the volume contains the library file. Additional details: https://atlassian.github.io/data-center-helm-charts/examples/external_libraries/EXTERNAL_LIBS/ |
-| crowd.additionalPorts | list | `[]` | Defines any additional ports for the Crowd container. |
-| crowd.additionalVolumeClaimTemplates | list | `[]` | Defines additional volumeClaimTemplates that should be applied to the Crowd pod. Note that this will not create any corresponding volume mounts; those needs to be defined in crowd.additionalVolumeMounts |
+| crowd.additionalJvmArgs | list | `[]` | Specifies a list of additional arguments that can be passed to the Crowd JVM, e.g. system properties.  |
+| crowd.additionalLibraries | list | `[]` | Specifies a list of additional Java libraries that should be added to the Crowd container. Each item in the list should specify the name of the volume that contains the library, as well as the name of the library file within that volume's root directory. Optionally, a subDirectory field can be included to specify which directory in the volume contains the library file. Additional details: https://atlassian.github.io/data-center-helm-charts/examples/external_libraries/EXTERNAL_LIBS/  |
+| crowd.additionalPorts | list | `[]` | Defines any additional ports for the Crowd container.  |
+| crowd.additionalVolumeClaimTemplates | list | `[]` | Defines additional volumeClaimTemplates that should be applied to the Crowd pod. Note that this will not create any corresponding volume mounts; those needs to be defined in crowd.additionalVolumeMounts  |
 | crowd.additionalVolumeMounts | list | `[]` | Defines any additional volumes mounts for the Crowd container. These can refer to existing volumes, or new volumes can be defined in volumes.additional. |
 | crowd.containerSecurityContext | object | `{}` | Standard K8s field that holds security configurations that will be applied to a container. https://kubernetes.io/docs/tasks/configure-pod-container/security-context/  |
 | crowd.livenessProbe.customProbe | object | `{}` | Custom livenessProbe to override the default tcpSocket probe  |
@@ -187,3 +185,6 @@ Kubernetes: `>=1.21.x-0`
 | volumes.sharedHome.persistentVolumeClaim.resources | object | `{"requests":{"storage":"1Gi"}}` | Specifies the standard K8s resource requests and/or limits for the shared-home volume claims.  |
 | volumes.sharedHome.persistentVolumeClaim.storageClassName | string | `nil` | Specify the name of the 'StorageClass' that should be used for the 'shared-home' volume claim.  |
 | volumes.sharedHome.subPath | string | `nil` | Specifies the sub-directory of the shared-home volume that will be mounted in to the Crowd container.  |
+
+----------------------------------------------
+Autogenerated from chart metadata using [helm-docs v1.12.0](https://github.com/norwoodj/helm-docs/releases/v1.12.0)
