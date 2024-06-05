@@ -4,7 +4,7 @@ DC_APP_REPLACEME:
   resources:
     container:
       requests:
-        cpu: 20m
+        cpu: 2
         memory: 1G
   # we want to test scaling to 2 and making sure nodes have joined the cluster
   # this is also required for DC functional tests
@@ -46,7 +46,7 @@ DC_APP_REPLACEME:
     - -Datlassian.darkfeature.jira.onboarding.feature.disabled=true
     - -Djira.websudo.is.disabled=true
     - -Datlassian.allow.insecure.url.parameter.login=true
-    - -XX:ActiveProcessorCount=2
+    # - -XX:ActiveProcessorCount=2
 
   # Jira func tests will setup Jira, and during this time status will report 500
   # to avoid marking container as non-ready, let's bump failureThreshold for a readinessProbe
