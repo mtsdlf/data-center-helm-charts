@@ -12,10 +12,10 @@ data:
     {{ include "confluence.sysprop.clusterNodeName" . }}
     {{ include "confluence.sysprop.fluentdAppender" . }}
     {{- include "confluence.sysprop.debug" . -}}
+    -XX:ActiveProcessorCount={{ include "flooredCPU" .Values.confluence.resources.container.requests.cpu }}
     {{- range .Values.confluence.additionalJvmArgs }}
     {{ . }}
     {{- end }}
-    -XX:ActiveProcessorCount={{ include "flooredCPU" .Values.confluence.resources.container.requests.cpu }}
     {{- if .Values.serviceAccount.eksIrsa.roleArn }}
     -Daws.webIdentityTokenFile=/var/run/secrets/eks.amazonaws.com/serviceaccount/token
     {{- end }}

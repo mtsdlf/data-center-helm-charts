@@ -7,10 +7,10 @@ metadata:
 data:
   additional_jvm_args: >-
     {{ include "jira.sysprop.fluentdAppender" . }}
+    -XX:ActiveProcessorCount={{ include "flooredCPU" .Values.jira.resources.container.requests.cpu }}
     {{- range .Values.jira.additionalJvmArgs }}
     {{ . }}
     {{- end }}
-    -XX:ActiveProcessorCount={{ include "flooredCPU" .Values.jira.resources.container.requests.cpu }}
     {{- if .Values.serviceAccount.eksIrsa.roleArn }}
     -Daws.webIdentityTokenFile=/var/run/secrets/eks.amazonaws.com/serviceaccount/token
     {{- end }}
